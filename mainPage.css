@@ -1,0 +1,34 @@
+body{
+    background-color: lightblue;
+}
+#start{
+    margin-left:500px;
+    width: 200px;
+    height: 100px;
+    background-color: aqua;
+    border-radius: 10px;
+}
+#playButton{
+    width: 200px;
+    height: 100px;
+    background-color: lightgreen;
+    border-radius: 10px;
+}
+#board{
+    margin-left: 400px;
+}
+.boardpix{
+    background-color: rgb(195, 176, 145);
+    border-radius: 1px;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+.Red{
+    background-color: red;
+    cursor: auto;
+}
+.Blue{
+    background-color: Blue;
+    cursor: auto;
+}

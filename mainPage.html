@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BACKGAMMON</title>
+    <link rel="stylesheet" href="mainPage.css">
+    <script src="./mainPage.js"></script>
+</head>
+<body>
+    <button onclick = "initialize()" id = "start">Start Game</button>
+    <audio id="backgroundMusic" loop>
+        <source src="./667.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <button id="playButton">Play Music</button>
+    
+    <script>
+        var audio = document.getElementById('backgroundMusic');
+        var playButton = document.getElementById('playButton');
+    
+        playButton.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playButton.textContent = 'Pause Music';
+            } else {
+                audio.pause();
+                playButton.textContent = 'Play Music';
+            }
+        });
+    </script>
+    <div id = 'board'>
+    </div>
+</body>
+</html>
