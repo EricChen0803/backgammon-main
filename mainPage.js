@@ -13,14 +13,13 @@ function initialize(){
             bt.onclick = placeButton;
             bt.id = (i)+","+(j);
             bt.classList.add("boardpix");
-            bt.textContent = (i)+","+(j); // 设置按钮文本
             bt.classList.add("grid-button"); // 添加CSS类用于样式
     
             row.appendChild(bt); // 将按钮添加到行中
         }
     
         buttonContainer.appendChild(row); // 将行添加到按钮容器中
-        document.getElementById("start").textContent = "Restar Game";
+        document.getElementById("start").textContent = "Restart Game";
     }
     color = 0;
     array = new Array(15);
