@@ -14,7 +14,20 @@
         Your browser does not support the audio element.
     </audio>
     
-    <button id="playButton">Play Music</button>
+    <audio id="soundclick" src="./12588.mp3" preload="auto"></audio>
+    <audio id="wrongclick" src="./13245.mp3" preload="auto"></audio>
+
+    <button id="playButton">Play Background Music</button>
+
+    <div id = 'round'>
+        <p id = 'curr'>Current Round: </p>
+    </div>
+    <div id = 'score'>
+        <p id = 'RedScore'> Red Player Score: 0</p>
+        <p id = 'BlueScore'> Blue Player Score: 0</p>
+        <p id = 'Winner'> Winner: Tie</p>
+        <button onclick = "clearScore()" id = "clearScore"> Clear the Score</button>
+    </div>
     
     <script>
         var audio = document.getElementById('backgroundMusic');
@@ -23,13 +36,20 @@
         playButton.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play();
-                playButton.textContent = 'Pause Music';
+                playButton.textContent = 'Pause Background Music';
             } else {
                 audio.pause();
-                playButton.textContent = 'Play Music';
+                playButton.textContent = 'Play Background Music';
             }
         });
     </script>
+    <div id = 'welcome'>
+        <p class = 'welcomeSign'>Welcome</p>
+        <p class = 'welcomeSign'>To</p>
+        <p class = 'welcomeSign'>Online</p>
+        <p class = 'welcomeSign'>Backgammon</p>
+        <p class = 'welcomeSign'>Platform</p>
+    </div>
     <div id = 'board'>
     </div>
 </body>

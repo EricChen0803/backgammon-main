@@ -1,25 +1,33 @@
 var color = 0;
 var array = new Array(15);
-
+var windowOpen = false;
+var RedScore = 0;
+var BlueScore = 0;
 function initialize(){
+    var welcomePage = document.getElementById("welcome");
+    if(welcomePage!=null){
+        welcomePage.remove();
+    }
+    closeWindow();
     document.getElementById("board").innerHTML = "";
     var buttonContainer = document.getElementById("board");
     for (var i = 0; i < 15; i++) {
-        var row = document.createElement("div"); // 创建一行
-        row.classList.add("row"); // 添加CSS类用于样式
+        var row = document.createElement("div"); 
+        row.classList.add("row"); 
     
         for (var j = 0; j < 15; j++) {
-            var bt = document.createElement("button"); // 创建按钮元素
+            var bt = document.createElement("button"); 
             bt.onclick = placeButton;
             bt.id = (i)+","+(j);
             bt.classList.add("boardpix");
-            bt.classList.add("grid-button"); // 添加CSS类用于样式
+            bt.classList.add("grid-button"); 
     
-            row.appendChild(bt); // 将按钮添加到行中
+            row.appendChild(bt);
         }
     
-        buttonContainer.appendChild(row); // 将行添加到按钮容器中
+        buttonContainer.appendChild(row); 
         document.getElementById("start").textContent = "Restart Game";
+        changeCurrentRound();
     }
     color = 0;
     array = new Array(15);
@@ -29,9 +37,11 @@ function initialize(){
             array[i][j]="U";
         }
       }
+    changeCurrentRound();
     }
 function placeButton(){
     if((this.classList.contains("Red"))||(this.classList.contains("Blue"))){
+        document.getElementById("wrongclick").play();
         return;
     }
     if(color == 0){
@@ -42,6 +52,7 @@ function placeButton(){
         var first = parseInt(parts[0]);
         var second = parseInt(parts[1]);
         array[first][second]="R";
+        document.getElementById("soundclick").play();
         check_win();
     }
     else{
@@ -52,7 +63,17 @@ function placeButton(){
         var second = parseInt(parts[1]);
         array[first][second]="B";
         color = 0;
+        document.getElementById("soundclick").play();
         check_win();
+    }
+    changeCurrentRound();
+}
+function changeCurrentRound(){
+    if(color==0){
+        document.getElementById("curr").textContent = 'Current Round: Red';
+    }
+    else{
+        document.getElementById("curr").textContent = 'Current Round: Blue';
     }
 }
 function check_win(){
@@ -63,11 +84,11 @@ function check_win(){
         var substringToCheckB = "BBBBB";
 
         if (longstr.includes(substringToCheckR)) {
-            alert("Red Win!!!");
+            redWin();
             return;
         }
         if (longstr.includes(substringToCheckB)) {
-            alert("Blue Win!!!");
+            blueWin();
             return;
         }
     }
@@ -82,11 +103,11 @@ function check_win(){
         var substringToCheckB = "BBBBB";
 
         if (longstr.includes(substringToCheckR)) {
-            alert("Red Win!!!");
+            redWin();
             return;
         }
         if (longstr.includes(substringToCheckB)) {
-            alert("Blue Win!!!");
+            blueWin();
             return;
         }
     }
@@ -110,19 +131,18 @@ function check_win(){
             }
         }
     }
-    console.log(zxarray);
-    for(let i=0; i<29; i++){
+    for(let i=0; i<30; i++){
         var longstr = zxarray[i].join(''); // Convert array to a comma-separated string
 
         var substringToCheckR = "RRRRR";
         var substringToCheckB = "BBBBB";
 
         if (longstr.includes(substringToCheckR)) {
-            alert("Red Win!!!");
+            redWin();
             return;
         }
         if (longstr.includes(substringToCheckB)) {
-            alert("Blue Win!!!");
+            blueWin();
             return;
         }
     }
@@ -140,20 +160,116 @@ function check_win(){
             countArray[(i+j)]++;
         }
     }
-    console.log(zxarray);
-    for(let i=0; i<29; i++){
+    for(let i=0; i<30; i++){
         var longstr = zxarray[i].join(''); // Convert array to a comma-separated string
 
         var substringToCheckR = "RRRRR";
         var substringToCheckB = "BBBBB";
 
         if (longstr.includes(substringToCheckR)) {
-            alert("Red Win!!!");
+            redWin();
             return;
         }
         if (longstr.includes(substringToCheckB)) {
-            alert("Blue Win!!!");
+            blueWin();
             return;
         }
     }
+}
+
+function redWin(){
+    if(windowOpen==true){
+        return;
+    }
+    var windowElement = document.createElement("div");
+    windowElement.id = "popOutWindow";
+    windowElement.className = "window";
+    document.body.appendChild(windowElement);
+    var pp = document.createElement("p");
+    pp.innerText = "Congratulation Red! \n You win!"
+    pp.className = "congSign";
+    windowElement.appendChild(pp);
+    var rebt = document.createElement("button");
+    rebt.className = "restartButton";
+    rebt.onclick = initialize;
+    rebt.textContent = "Play Another Round";
+    windowElement.appendChild(rebt);
+    var bt = document.createElement("button");
+    bt.className = "closeButton";
+    bt.onclick = closeWindow;
+    bt.textContent = "Close";
+    windowElement.appendChild(bt);
+    windowOpen = true;
+    
+    var buttons = document.getElementsByClassName("boardpix");
+    for(let i=0; i<225; i++){
+        buttons[i].disabled = true;
+    }
+    updateScore("Red");
+}
+function blueWin(){
+    if(windowOpen==true){
+        return;
+    }
+    var windowElement = document.createElement("div");
+    windowElement.id = "popOutWindow";
+    windowElement.className = "window";
+    document.body.appendChild(windowElement);
+    var pp = document.createElement("p");
+    pp.innerText = "Congratulation Blue! \n You win!"
+    pp.className = "congSign";
+    windowElement.appendChild(pp);
+    var rebt = document.createElement("button");
+    rebt.className = "restartButton";
+    rebt.onclick = initialize;
+    rebt.textContent = "Play Another Round";
+    windowElement.appendChild(rebt);
+    var bt = document.createElement("button");
+    bt.className = "closeButton";
+    bt.onclick = closeWindow;
+    bt.textContent = "Close";
+    windowElement.appendChild(bt);
+    windowOpen = true;
+    
+    var buttons = document.getElementsByClassName("boardpix");
+    for(let i=0; i<225; i++){
+        buttons[i].disabled = true;
+    }
+    updateScore("Blue");
+}
+function closeWindow(){ 
+    if(windowOpen == true){
+        var window = document.getElementById("popOutWindow");
+        window.remove();
+        windowOpen = false;
+    }
+}
+
+function updateScore(winner){
+    if(winner=="Red"){
+        RedScore++;
+        var tp = document.getElementById("RedScore");
+        tp.textContent = "Red Player Score: "+RedScore;
+    }
+    else{
+        BlueScore++;
+        var tp = document.getElementById("BlueScore");
+        tp.textContent = "Blue Player Score: "+BlueScore; 
+    }
+    var tp = document.getElementById("Winner");
+    if(RedScore>BlueScore){
+        tp.textContent = "Winner: Red Player"
+    }
+    else if(BlueScore>RedScore){
+        tp.textContent = "Winner: Blue Player"
+    }
+    else{
+        tp.textContent = "Winner: Tie"
+    }
+}
+function clearScore(){
+    RedScore = -1;
+    BlueScore = -1;
+    updateScore("Red");
+    updateScore("Blue");
 }

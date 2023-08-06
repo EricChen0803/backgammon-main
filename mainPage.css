@@ -1,21 +1,34 @@
 body{
-    background-color: lightblue;
+    background-image: url('./bg.jpeg');
+    background-size: cover;
+  background-repeat: no-repeat;
 }
 #start{
-    margin-left:500px;
+    margin-left:530px;
     width: 200px;
-    height: 100px;
+    height: 80px;
     background-color: aqua;
     border-radius: 10px;
 }
 #playButton{
     width: 200px;
-    height: 100px;
+    height: 80px;
     background-color: lightgreen;
     border-radius: 10px;
 }
 #board{
     margin-left: 400px;
+}
+#round{
+    margin-top: 20px;
+    margin-right: 50px;
+    background-color: pink;
+    width: 200px;
+    height: 50px;
+    float: right;
+}
+#curr{
+    text-align: center;
 }
 .boardpix{
     background-color: rgb(195, 176, 145);
@@ -32,3 +45,89 @@ body{
     background-color: Blue;
     cursor: auto;
 }
+
+.window {
+    position: absolute;
+    top: 150px;
+    left: 470px;
+    width: 500px;
+    height: 500px;
+    background-color: aqua;
+    border: 5px solid #ccc;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  .congSign{
+    text-align: center;
+    font-size: 40px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  .closeButton{
+    margin-top:50px;
+    margin-left:150px;
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    border: 2px solid purple;
+    border-radius: 8px;
+    background-color: lightgreen;
+  }
+  .restartButton{
+    margin-top:20px;
+    margin-left:150px;
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    border: 2px solid purple;
+    border-radius: 8px;
+    background-color: lightgreen;
+  }
+
+  #welcome {
+    position: absolute;
+    top: 150px;
+    left: 470px;
+    width: 500px;
+    height: 500px;
+    background-color: aqua;
+    border: 5px solid #ccc;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  .welcomeSign{
+    text-align: center;
+    font-size: 40px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  #score {
+    position: absolute;
+    top: 150px;
+    right:0px;
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    margin-right: 50px;
+    border: 5px solid #ccc;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  #RedScore{
+    text-align: center;
+    font-size: 20px;
+  }
+  #BlueScore{
+    text-align: center;
+    font-size: 20px;
+  }
+  #Winner{
+    text-align: center;
+    font-size: 20px;
+  }
+
+  #clearScore{
+    background-color: lemonchiffon;
+    margin-left:45px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
